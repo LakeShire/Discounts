@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Discounts.iml" filepath="$PROJECT_DIR$/Discounts.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lemon/lemon.iml" filepath="$PROJECT_DIR$/lemon/lemon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lemonframework/lemonframework.iml" filepath="$PROJECT_DIR$/lemonframework/lemonframework.iml" />
     </modules>
   </component>
 </project>
