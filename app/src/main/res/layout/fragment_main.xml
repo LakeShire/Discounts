@@ -1,36 +1,25 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:layout_height="match_parent">
     <include
-        layout="@layout/layout_titlebar" />
+        android:id="@+id/titlebar"
+        layout="@layout/layout_titlebar"
+        android:layout_alignParentTop="true"
+        android:layout_height="@dimen/titlebar_height"
+        android:layout_width="match_parent"/>
 
-    <com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout
-        android:id="@+id/ptr_frame"
-        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    <android.support.v4.view.ViewPager
+        android:layout_below="@id/titlebar"
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        cube_ptr:ptr_resistance="1.7"
-        cube_ptr:ptr_ratio_of_header_height_to_refresh="1"
-        cube_ptr:ptr_duration_to_close="300"
-        cube_ptr:ptr_duration_to_close_header="2000"
-        cube_ptr:ptr_keep_header_when_refresh="true"
-        cube_ptr:ptr_pull_to_fresh="true">
-        <!--<ListView-->
-            <!--android:id="@+id/list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:divider="@color/gray"-->
-            <!--android:dividerHeight="1px">-->
-        <!--</ListView>-->
-        <GridView
-            android:id="@+id/grid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="3"
-            android:stretchMode="columnWidth">
-        </GridView>
-    </com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout>
-</LinearLayout>
+        android:layout_above="@+id/indicator"/>
+
+    <com.github.lakeshire.discounts.view.viewpagerindicator.IconTabPageIndicator
+        android:id="@id/indicator"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme"/>
+</RelativeLayout>

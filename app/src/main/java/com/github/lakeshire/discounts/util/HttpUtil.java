@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -32,11 +34,13 @@ public class HttpUtil {
 
     public interface Callback {
         void onFail(String error);
+
         void onSuccess(String response);
     }
 
     /**
      * 异步GET
+     *
      * @param url
      * @param cb
      * @param timeout
@@ -70,6 +74,7 @@ public class HttpUtil {
 
     /**
      * 同步GET
+     *
      * @param url
      * @return
      */
@@ -93,5 +98,36 @@ public class HttpUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+    public void post(String url, String json, final Callback cb, int timeout) throws IOException {
+        OkHttpClient client;
+        if (timeout == 0) {
+            client = new OkHttpClient();
+        } else {
+            client = new OkHttpClient().newBuilder().connectTimeout(timeout, TimeUnit.MILLISECONDS).build();
+        }
+
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder().url(url).post(body).build();
+        Call call = client.newCall(request);
+        call.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if (cb != null) {
+                    cb.onFail(e.getMessage());
+                }
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (cb != null) {
+                    cb.onSuccess(response.body().string());
+                }
+            }
+        });
     }
 }

@@ -2,9 +2,11 @@ package com.github.lakeshire.discounts.fragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.discounts.util.ImageUtil;
 import com.github.lakeshire.discounts.view.tagview.Tag;
 import com.github.lakeshire.discounts.view.tagview.TagListView;
 
@@ -25,6 +27,8 @@ public class InfoDetailFragment extends DBaseFragment {
     private TagListView mTagListView;
     private String[] mTagTitles;
     private List<Tag> mTags = new ArrayList<>();
+    private ImageView mIvPic;
+    private String mPic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class InfoDetailFragment extends DBaseFragment {
             mUrl = args.getString("extra_info_url");
             mTitle = args.getString("extra_info_title");
             mContent = args.getString("extra_info_description");
+            mPic = args.getString("extra_info_pic");
             generateTags(args.getString("extra_info_tags"));
         }
     }
@@ -67,6 +72,9 @@ public class InfoDetailFragment extends DBaseFragment {
 
         mTagListView = (TagListView) find(R.id.tagview);
         mTagListView.setDeleteMode(false);
+
+        mIvPic = (ImageView) find(R.id.iv_pic);
+        ImageUtil.getInstance(getActivity()).setImage(mIvPic, mPic, 0, 0, false);
     }
 
     @Override

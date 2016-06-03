@@ -10,6 +10,7 @@ public class Info {
     private String end;
     private String url;
     private String tags;
+    private String pic;
 
     public String getUrl() {
         return url;
@@ -57,5 +58,13 @@ public class Info {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

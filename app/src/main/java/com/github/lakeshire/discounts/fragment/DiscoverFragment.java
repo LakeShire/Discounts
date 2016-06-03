@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by nali on 2016/6/2.
  */
-public class InfoFragment extends DBasePullFragment {
+public class DiscoverFragment extends PagerFragment {
 
     ListView mLvInfo;
     private ArrayList<Info> mInfoList = new ArrayList<>();
@@ -39,14 +39,14 @@ public class InfoFragment extends DBasePullFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_list;
+        return R.layout.fragment_discover;
     }
 
     @Override
-    void initUI() {
-        showAction(R.drawable.ic_search);
-        showBack(true);
-        setTitle(mSource);
+    public void initUi() {
+//        showAction(R.drawable.ic_search);
+//        showBack(true);
+//        setTitle(mSource);
 
         mLvInfo = (ListView) find(R.id.list);
         mAdapter = new InfoAdapter(getActivity(), mInfoList, R.layout.item_source);
@@ -70,7 +70,7 @@ public class InfoFragment extends DBasePullFragment {
     public void loadData() {
         super.loadData();
         mInfoList.clear();
-        HttpUtil.getInstance().get("http://lakeshire.top/info/infos?source=" + mSource, new HttpUtil.Callback() {
+        HttpUtil.getInstance().get("http://lakeshire.top/info/infos", new HttpUtil.Callback() {
             @Override
             public void onFail(String error) {
                 Logger.d("onFail");

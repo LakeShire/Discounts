@@ -11,4 +11,7 @@
     <color name="gray">#cccccc</color>
 
     <color name="blue">#ff33b5e5</color>
+
+    <color name="tab_text_normal">@color/black</color>
+    <color name="tab_text_selected">@color/theme</color>
 </resources>
