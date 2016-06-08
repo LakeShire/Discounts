@@ -70,9 +70,11 @@ public class InfoFragment extends DBasePullFragment {
     public void loadData() {
         super.loadData();
         mInfoList.clear();
+        showLoadingLayout();
         HttpUtil.getInstance().get("http://lakeshire.top/info/infos?source=" + mSource, new HttpUtil.Callback() {
             @Override
             public void onFail(String error) {
+                showNetworkErrorLayout();
                 Logger.d("onFail");
             }
 
@@ -81,8 +83,12 @@ public class InfoFragment extends DBasePullFragment {
                 Logger.d(response);
                 if (response != null && !response.isEmpty()) {
                     List<Info> infos = JSON.parseArray(response, Info.class);
-                    mInfoList.addAll(infos);
-                    notifyAdapter();
+                    if (infos.isEmpty()) {
+                        showNoContentLayout();
+                    } else {
+                        mInfoList.addAll(infos);
+                        notifyAdapter();
+                    }
                 }
             }
         }, 0);
@@ -112,6 +118,7 @@ public class InfoFragment extends DBasePullFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    hideAllLayout();
                     mAdapter.notifyDataSetChanged();
                 }
             });

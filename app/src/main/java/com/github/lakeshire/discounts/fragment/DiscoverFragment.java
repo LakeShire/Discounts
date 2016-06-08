@@ -13,7 +13,6 @@ import com.github.lakeshire.discounts.adapter.base.ViewHolder;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.util.HttpUtil;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +43,7 @@ public class DiscoverFragment extends PagerFragment {
 
     @Override
     public void initUi() {
-//        showAction(R.drawable.ic_search);
-//        showBack(true);
-//        setTitle(mSource);
-
+        super.initUi();
         mLvInfo = (ListView) find(R.id.list);
         mAdapter = new InfoAdapter(getActivity(), mInfoList, R.layout.item_source);
         mLvInfo.setAdapter(mAdapter);
@@ -56,6 +52,7 @@ public class DiscoverFragment extends PagerFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Info model = (Info) parent.getAdapter().getItem(position);
                 Bundle bundle = new Bundle();
+                bundle.putString("extra_id", model.getId());
                 bundle.putString("extra_info_url", model.getUrl());
                 bundle.putString("extra_info_title", model.getTitle());
                 bundle.putString("extra_info_description", model.getDescription());
@@ -70,19 +67,23 @@ public class DiscoverFragment extends PagerFragment {
     public void loadData() {
         super.loadData();
         mInfoList.clear();
+        showLoadingLayout();
         HttpUtil.getInstance().get("http://lakeshire.top/info/infos", new HttpUtil.Callback() {
             @Override
             public void onFail(String error) {
-                Logger.d("onFail");
+                showNetworkErrorLayout();
             }
 
             @Override
             public void onSuccess(String response) {
-                Logger.d(response);
                 if (response != null && !response.isEmpty()) {
                     List<Info> infos = JSON.parseArray(response, Info.class);
-                    mInfoList.addAll(infos);
-                    notifyAdapter();
+                    if (infos.isEmpty()) {
+                        showNoContentLayout();
+                    } else {
+                        mInfoList.addAll(infos);
+                        notifyAdapter();
+                    }
                 }
             }
         }, 0);
@@ -112,6 +113,7 @@ public class DiscoverFragment extends PagerFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    hideAllLayout();
                     mAdapter.notifyDataSetChanged();
                 }
             });

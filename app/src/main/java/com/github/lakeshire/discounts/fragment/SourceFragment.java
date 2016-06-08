@@ -24,7 +24,6 @@ import java.util.List;
  */
 public class SourceFragment extends PagerFragment {
 
-//    ListView mLvSource;
     GridView mGvSource;
     private ArrayList<Source> mSourceList = new ArrayList<>();
     private SourceAdapter mAdapter;
@@ -37,16 +36,10 @@ public class SourceFragment extends PagerFragment {
     @Override
     public void initUi() {
         super.initUi();
-//        showAction(R.drawable.ic_search);
-//        showBack(true);
-//        setTitle("折扣信息聚合");
 
-//        mLvSource = (ListView) find(R.id.list);
         mGvSource = (GridView) find(R.id.grid);
         mAdapter = new SourceAdapter(getActivity(), mSourceList, R.layout.item_source_grid);
-//        mLvSource.setAdapter(mAdapter);
         mGvSource.setAdapter(mAdapter);
-//        mLvSource.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         mGvSource.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,9 +55,11 @@ public class SourceFragment extends PagerFragment {
     public void loadData() {
         super.loadData();
         mSourceList.clear();
+        showLoadingLayout();
         HttpUtil.getInstance().get("http://lakeshire.top/source/all", new HttpUtil.Callback() {
             @Override
             public void onFail(String error) {
+                showNetworkErrorLayout();
                 Logger.d("onFail");
             }
 
@@ -73,8 +68,12 @@ public class SourceFragment extends PagerFragment {
                 Logger.d(response);
                 if (response != null && !response.isEmpty()) {
                     List<Source> sources = JSON.parseArray(response, Source.class);
-                    mSourceList.addAll(sources);
-                    notifyAdapter();
+                    if (sources.isEmpty()) {
+                        showNoContentLayout();
+                    } else {
+                        mSourceList.addAll(sources);
+                        notifyAdapter();
+                    }
                 }
             }
         }, 0);
@@ -90,7 +89,6 @@ public class SourceFragment extends PagerFragment {
         public void bindViewData(ViewHolder viewHolder, Source item, int position) {
             viewHolder.setText(R.id.tv_name, item.getName());
             ImageUtil.getInstance(getActivity()).setImage((ImageView) viewHolder.getItemView(R.id.iv_logo), item.getPic());
-
         }
     }
 
@@ -106,6 +104,7 @@ public class SourceFragment extends PagerFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    hideAllLayout();
                     mAdapter.notifyDataSetChanged();
                 }
             });

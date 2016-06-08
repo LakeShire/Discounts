@@ -1,5 +1,6 @@
 package com.github.lakeshire.discounts.util;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,6 +20,7 @@ import com.squareup.picasso.Transformation;
 public class ImageUtil {
 
     private static ImageUtil sHttpUtil;
+    private final Context mContext;
     private Picasso picasso;
     private int placeHolder = -1;
     public static ImageUtil getInstance(Context context) {
@@ -35,6 +37,7 @@ public class ImageUtil {
     private ImageUtil(Context context) {
         picasso = new Picasso.Builder(context).memoryCache(new LruCache(calculateMemoryCacheSize(context))).build();
         picasso.setLoggingEnabled(true);
+        mContext = context;
     }
 
     static int calculateMemoryCacheSize(Context context) {
@@ -70,6 +73,17 @@ public class ImageUtil {
             if (isCircle) {
                 request.transform(new CircleTransform());
             }
+            request.into(iv);
+        }
+    }
+
+    public void setImageDecrease(ImageView iv, String src) {
+        if (src != null && !src.isEmpty()) {
+            RequestCreator request = picasso.load(src);
+            if (placeHolder != -1) {
+                request.placeholder(placeHolder);
+            }
+            request.transform(new DecreaseTransFormation());
             request.into(iv);
         }
     }
@@ -123,4 +137,25 @@ public class ImageUtil {
         }
     }
 
+    class DecreaseTransFormation implements Transformation {
+
+        @Override
+        public Bitmap transform(Bitmap source) {
+            int targetWidth = ScreenUtil.getScreenWidth((Activity) mContext);
+
+            double aspectRatio = (double) source.getHeight() / (double) source.getWidth();
+            int targetHeight = (int) (targetWidth * aspectRatio);
+            Bitmap result = Bitmap.createScaledBitmap(source, targetWidth, targetHeight, false);
+            if (result != source) {
+                // Same bitmap is returned if sizes are the same
+                source.recycle();
+            }
+            return result;
+        }
+
+        @Override
+        public String key() {
+            return "transformation" + " desiredWidth";
+        }
+    };
 }

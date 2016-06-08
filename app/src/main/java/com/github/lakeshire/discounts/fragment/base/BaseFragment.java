@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.activity.base.BaseActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,9 @@ public abstract class BaseFragment extends Fragment {
     protected ViewGroup mContainerView;
     private List<ImageView> mImageViews = new ArrayList<>();
     private List<Bitmap> mBitmaps = new ArrayList<>();
+    private View mLoadingLayout;
+    private View mNetworkErrorLayout;
+    private View mNoContentLayout;
 
     public void startFragment(Class<?> clazz) {
         ((BaseActivity) getActivity()).startFragment(clazz, null);
@@ -53,7 +59,10 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void initUi() {
-
+        mLoadingLayout = find(R.id.layout_loading);
+        mNetworkErrorLayout = find(R.id.layout_network_error);
+        mNoContentLayout = find(R.id.layout_no_content);
+        hideAllLayout();
     }
 
     protected void l(String log) {
@@ -81,5 +90,60 @@ public abstract class BaseFragment extends Fragment {
             iv.setImageBitmap(null);
         }
         super.onDestroy();
+    }
+
+    public void showLoadingLayout() {
+        if (mLoadingLayout != null) {
+            mLoadingLayout.setVisibility(View.VISIBLE);
+        }
+        if (mNetworkErrorLayout != null) {
+            mNetworkErrorLayout.setVisibility(View.GONE);
+        }
+        if (mNoContentLayout != null) {
+            mNoContentLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void showNetworkErrorLayout() {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mNetworkErrorLayout != null) {
+                        mNetworkErrorLayout.setVisibility(View.VISIBLE);
+                    }
+                    if (mLoadingLayout != null) {
+                        mLoadingLayout.setVisibility(View.GONE);
+                    }
+                    if (mNoContentLayout != null) {
+                        mNoContentLayout.setVisibility(View.GONE);
+                    }
+                }
+            });
+        }
+    }
+
+    public void showNoContentLayout() {
+        if (mNoContentLayout != null) {
+            mNoContentLayout.setVisibility(View.VISIBLE);
+        }
+        if (mNetworkErrorLayout != null) {
+            mNetworkErrorLayout.setVisibility(View.GONE);
+        }
+        if (mLoadingLayout != null) {
+            mLoadingLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void hideAllLayout() {
+        if (mNoContentLayout != null) {
+            mNoContentLayout.setVisibility(View.GONE);
+        }
+        if (mNetworkErrorLayout != null) {
+            mNetworkErrorLayout.setVisibility(View.GONE);
+        }
+        if (mLoadingLayout != null) {
+            mLoadingLayout.setVisibility(View.GONE);
+        }
     }
 }

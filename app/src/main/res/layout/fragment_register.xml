@@ -30,6 +30,23 @@
         android:layout_height="48dp"
         android:gravity="center_vertical"
         android:paddingLeft="32dp"
+        android:text="邮箱"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
         android:text="密码"
         android:textColor="@color/black"
         android:textSize="20sp"/>
@@ -43,27 +60,12 @@
         android:textColor="@color/black"
         android:text="lh090036"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:orientation="horizontal"
         android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp">
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="登录"
-            android:gravity="center"/>
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="32dp"
-            android:text="注册"
-            android:gravity="center"/>
-    </LinearLayout>
-
+        android:layout_marginRight="32dp"
+        android:text="登录"
+        android:gravity="center"/>
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.github.lakeshire.discounts.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * Created by nali on 2016/6/2.
  */
@@ -11,6 +13,26 @@ public class Info {
     private String url;
     private String tags;
     private String pic;
+    private Source source;
+
+    @JSONField(name="_id")
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
 
     public String getUrl() {
         return url;

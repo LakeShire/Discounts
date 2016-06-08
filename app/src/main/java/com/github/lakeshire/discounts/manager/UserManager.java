@@ -19,6 +19,6 @@ public class UserManager {
     }
 
     public static void setUser(String string) {
-        sUser = (User) JSON.toJSON(string);
+        sUser = JSON.parseObject(string, User.class);
     }
 }

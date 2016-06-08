@@ -4,9 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!--<include-->
-        <!--layout="@layout/layout_titlebar" />-->
-
     <com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout
         android:id="@+id/ptr_frame"
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
@@ -18,19 +15,25 @@
         cube_ptr:ptr_duration_to_close_header="2000"
         cube_ptr:ptr_keep_header_when_refresh="true"
         cube_ptr:ptr_pull_to_fresh="true">
-        <!--<ListView-->
-            <!--android:id="@+id/list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:divider="@color/gray"-->
-            <!--android:dividerHeight="1px">-->
-        <!--</ListView>-->
-        <GridView
-            android:id="@+id/grid"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="3"
-            android:stretchMode="columnWidth">
-        </GridView>
+            android:layout_height="match_parent">
+            <GridView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="3"
+                android:stretchMode="columnWidth">
+            </GridView>
+            <include
+                android:id="@+id/layout_loading"
+                layout="@layout/layout_loading" />
+            <include
+                android:id="@+id/layout_network_error"
+                layout="@layout/layout_network_error" />
+            <include
+                android:id="@+id/layout_no_content"
+                layout="@layout/layout_no_content" />
+        </FrameLayout>
     </com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout>
 </LinearLayout>
