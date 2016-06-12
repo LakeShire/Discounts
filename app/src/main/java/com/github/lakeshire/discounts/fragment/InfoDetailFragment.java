@@ -1,6 +1,7 @@
 package com.github.lakeshire.discounts.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,8 +9,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.manager.UserManager;
+import com.github.lakeshire.discounts.model.CollectParam;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.User;
+import com.github.lakeshire.discounts.model.UserResult;
 import com.github.lakeshire.discounts.util.HttpUtil;
 import com.github.lakeshire.discounts.util.ImageUtil;
 import com.github.lakeshire.discounts.view.tagview.Tag;
@@ -63,17 +66,6 @@ public class InfoDetailFragment extends DBaseFragment {
                                 mContent = info.getDescription();
                                 mPic = info.getPic();
                                 generateTags(info.getTags());
-
-                                User user = UserManager.getUser();
-                                if (user != null) {
-                                    List<Info> collections = user.getCollections();
-                                    for (Info i : collections) {
-                                        if (i.getId().equals(info.getId())) {
-                                            setCollected(true);
-                                            break;
-                                        }
-                                    }
-                                }
                                 updateUi();
                             }
                         }
@@ -133,6 +125,17 @@ public class InfoDetailFragment extends DBaseFragment {
                         }
                         mTagListView.setTags(mTags, false);
                     }
+
+                    User user = UserManager.getUser();
+                    if (user != null) {
+                        List<Info> collections = user.getCollections();
+                        for (Info i : collections) {
+                            if (i.getId().equals(mId)) {
+                                setCollected(true);
+                                break;
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -146,7 +149,10 @@ public class InfoDetailFragment extends DBaseFragment {
 
     @Override
     void initUI() {
-        showAction(R.drawable.ic_collect);
+        User user = UserManager.getUser();
+        if (user != null) {
+            showAction(R.drawable.ic_collect);
+        }
         showBack(true);
 
         mTvInfoTitle = (TextView) find(R.id.tv_info_title);
@@ -171,7 +177,7 @@ public class InfoDetailFragment extends DBaseFragment {
     @Override
     public void doAction() {
         if (collected) {
-            Param param = new Param();
+            CollectParam param = new CollectParam();
             param.setUser(UserManager.getUser());
             Info info = new Info();
             info.setId(mId);
@@ -187,19 +193,25 @@ public class InfoDetailFragment extends DBaseFragment {
 
                     @Override
                     public void onSuccess(String response) {
-                        Logger.d("delete: " + response);
-                    }
+                        UserResult result = JSON.parseObject(response, UserResult.class);
+                        if (result.getRet() == 0) {
+                            User user = result.getUser();
+                            UserManager.setUser(user);
+                        }
+                        setCollected(false);                    }
                 }, 0);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            Param param = new Param();
-            param.setUser(UserManager.getUser());
+            CollectParam param = new CollectParam();
             Info info = new Info();
             info.setId(mId);
             info.setTitle(mTitle);
             param.setInfo(info);
+            User user = UserManager.getUser();
+            param.setUser(user);
+
             String json = JSON.toJSONString(param);
             try {
                 HttpUtil.getInstance().post("http://lakeshire.top/collection/add", json, new HttpUtil.Callback() {
@@ -210,7 +222,12 @@ public class InfoDetailFragment extends DBaseFragment {
 
                     @Override
                     public void onSuccess(String response) {
-                        Logger.d("add: " + response);
+                        UserResult result = JSON.parseObject(response, UserResult.class);
+                        if (result.getRet() == 0) {
+                            User user = result.getUser();
+                            UserManager.setUser(user);
+                        }
+                        setCollected(true);
                     }
                 }, 0);
             } catch (IOException e) {
@@ -219,24 +236,5 @@ public class InfoDetailFragment extends DBaseFragment {
         }
     }
 
-    class Param {
-        private User user;
-        private Info info;
 
-        public User getUser() {
-            return user;
-        }
-
-        public void setUser(User user) {
-            this.user = user;
-        }
-
-        public Info getInfo() {
-            return info;
-        }
-
-        public void setInfo(Info info) {
-            this.info = info;
-        }
-    }
 }

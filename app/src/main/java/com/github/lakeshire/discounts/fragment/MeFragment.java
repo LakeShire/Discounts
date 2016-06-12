@@ -66,7 +66,6 @@ public class MeFragment extends PagerFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Info model = (Info) parent.getAdapter().getItem(position);
                 Bundle bundle = new Bundle();
-                Logger.d("id: " + model.getId());
                 bundle.putString("extra_id", model.getId());
 //                bundle.putString("extra_info_url", model.getUrl());
 //                bundle.putString("extra_info_title", model.getTitle());
@@ -133,7 +132,6 @@ public class MeFragment extends PagerFragment {
         if (mUser != null) {
             mInfoList.clear();
             mInfoList.addAll(mUser.getCollections());
-            Logger.d("mInfoList: " + mInfoList.size());
             ImageUtil.getInstance(getActivity()).setImage(mIvAvatar, R.drawable.image2, 256, 256, true);
             mTvName.setText(mUser.getName());
         } else {

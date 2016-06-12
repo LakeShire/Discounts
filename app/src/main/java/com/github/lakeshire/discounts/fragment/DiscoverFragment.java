@@ -2,8 +2,10 @@ package com.github.lakeshire.discounts.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
@@ -11,8 +13,12 @@ import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.adapter.base.BaseAdapter;
 import com.github.lakeshire.discounts.adapter.base.ViewHolder;
 import com.github.lakeshire.discounts.model.Info;
+import com.github.lakeshire.discounts.model.InfoResult;
 import com.github.lakeshire.discounts.util.HttpUtil;
+import com.github.lakeshire.discounts.view.LoadMoreListView;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout;
+import com.github.ybq.android.spinkit.style.FadingCircle;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +28,14 @@ import java.util.List;
  */
 public class DiscoverFragment extends PagerFragment {
 
-    ListView mLvInfo;
+    LoadMoreListView mLvInfo;
     private ArrayList<Info> mInfoList = new ArrayList<>();
     private InfoAdapter mAdapter;
     private String mSource;
+    private int mTotalPage = 0;
+    private int mPageId = 0;
+    private boolean loading;
+    private boolean isRefresh;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +54,25 @@ public class DiscoverFragment extends PagerFragment {
     @Override
     public void initUi() {
         super.initUi();
-        mLvInfo = (ListView) find(R.id.list);
+        mLvInfo = (LoadMoreListView) find(R.id.list);
+        mLvInfo.setLoadMoreCallback(new LoadMoreListView.Callback() {
+            @Override
+            public void loadMore() {
+                mLvInfo.onLoadMoreComplete(LoadMoreListView.STATUS_LOADING);
+                mPageId++;
+                getData();
+            }
+
+            @Override
+            public void initFooter(View view) {
+                ImageView ivAnim = (ImageView) view.findViewById(R.id.iv_anim);
+                FadingCircle cg = new FadingCircle();
+                int color = getResources().getColor(R.color.tiffany);
+                cg.setColor(color);
+                ivAnim.setBackgroundDrawable(cg);
+                cg.start();
+            }
+        });
         mAdapter = new InfoAdapter(getActivity(), mInfoList, R.layout.item_source);
         mLvInfo.setAdapter(mAdapter);
         mLvInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,25 +96,54 @@ public class DiscoverFragment extends PagerFragment {
         super.loadData();
         mInfoList.clear();
         showLoadingLayout();
-        HttpUtil.getInstance().get("http://lakeshire.top/info/infos", new HttpUtil.Callback() {
-            @Override
-            public void onFail(String error) {
-                showNetworkErrorLayout();
-            }
+        getData();
+    }
 
-            @Override
-            public void onSuccess(String response) {
-                if (response != null && !response.isEmpty()) {
-                    List<Info> infos = JSON.parseArray(response, Info.class);
-                    if (infos.isEmpty()) {
-                        showNoContentLayout();
-                    } else {
-                        mInfoList.addAll(infos);
-                        notifyAdapter();
+    private void getData() {
+        if (!loading) {
+            loading = true;
+            HttpUtil.getInstance().get("http://lakeshire.top/info/infos?pageId=" + mPageId, new HttpUtil.Callback() {
+                @Override
+                public void onFail(String error) {
+                    mLvInfo.onLoadMoreComplete(LoadMoreListView.STATUS_NETWORK_ERROR);
+                    loading = false;
+                    showNetworkErrorLayout();
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    loading = false;
+                    if (response != null && !response.isEmpty()) {
+                        InfoResult result = JSON.parseObject(response, InfoResult.class);
+                        if (result.getRet() == 0) {
+                            mTotalPage = result.getTotalPage();
+                            final List<Info> infos = result.getInfos();
+                            if (getActivity() != null) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (infos.isEmpty()) {
+                                            showNoContentLayout();
+                                            mLvInfo.onLoadMoreComplete(LoadMoreListView.STATUS_NO_CONTENT);
+                                        } else {
+                                            mInfoList.addAll(infos);
+                                            hideAllLayout();
+                                            mAdapter.notifyDataSetChanged();
+                                            if (isRefresh) {
+                                                mPtrFrameLayout.refreshComplete();
+                                            }
+                                            if (mPageId == mTotalPage - 1) {
+                                                mLvInfo.onLoadMoreComplete(LoadMoreListView.STATUS_NO_MORE);
+                                            }                                        }
+                                    }
+                                });
+
+                            }
+                        }
                     }
                 }
-            }
-        }, 0);
+            }, 0);
+        }
     }
 
     class InfoAdapter extends BaseAdapter<Info> {
@@ -108,15 +165,17 @@ public class DiscoverFragment extends PagerFragment {
         return canRefresh;
     }
 
-    private void notifyAdapter() {
-        if (getActivity() != null) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    hideAllLayout();
-                    mAdapter.notifyDataSetChanged();
-                }
-            });
-        }
+    @Override
+    protected void onRefresh(EnhancePtrFrameLayout frame) {
+        super.onRefresh(frame);
+        refresh();
+    }
+
+    private void refresh() {
+        mInfoList.clear();
+        mPageId = 0;
+        isRefresh = true;
+        getData();
+        mLvInfo.resetStatus();
     }
 }
