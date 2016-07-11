@@ -3,8 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Discounts.iml" filepath="$PROJECT_DIR$/Discounts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Discounts.iml" filepath="$PROJECT_DIR$/Discounts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lemon/lemon.iml" filepath="$PROJECT_DIR$/lemon/lemon.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/lemon/lemon.iml" filepath="$PROJECT_DIR$/lemon/lemon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lemonframework/lemonframework.iml" filepath="$PROJECT_DIR$/lemonframework/lemonframework.iml" />
+>>>>>>> cd1e02f87001f8e79f9b948c76054155c0c52ae1
     </modules>
   </component>
 </project>
