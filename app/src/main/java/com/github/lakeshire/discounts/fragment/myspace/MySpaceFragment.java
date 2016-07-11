@@ -1,6 +1,5 @@
-package com.github.lakeshire.discounts.fragment;
+package com.github.lakeshire.discounts.fragment.myspace;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -11,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.adapter.base.BaseAdapter;
-import com.github.lakeshire.discounts.adapter.base.ViewHolder;
+import com.github.lakeshire.discounts.adapter.InfoAdapter;
+import com.github.lakeshire.discounts.fragment.IDataDisplayView;
+import com.github.lakeshire.discounts.fragment.base.PagerFragment;
+import com.github.lakeshire.discounts.fragment.info.InfoDetailFragment;
+import com.github.lakeshire.discounts.fragment.login.LoginFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.User;
@@ -26,18 +28,14 @@ import com.orhanobut.logger.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nali on 2016/6/2.
- */
-public class MeFragment extends PagerFragment {
+public class MySpaceFragment extends PagerFragment implements IDataDisplayView {
 
-//    ListView mLvInfo;
     private PullToZoomListViewEx mListView;
-    private InfoAdapter mAdapter;
-    private List<Info> mInfoList = new ArrayList<>();
     private TextView mTvName;
     private ImageView mIvAvatar;
     private User mUser;
+    private List<Info> mInfoList = new ArrayList<>();
+    private InfoAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,13 +64,7 @@ public class MeFragment extends PagerFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Info model = (Info) parent.getAdapter().getItem(position);
                 Bundle bundle = new Bundle();
-                Logger.d("id: " + model.getId());
                 bundle.putString("extra_id", model.getId());
-//                bundle.putString("extra_info_url", model.getUrl());
-//                bundle.putString("extra_info_title", model.getTitle());
-//                bundle.putString("extra_info_description", model.getDescription());
-//                bundle.putString("extra_info_tags", model.getTags());
-//                bundle.putString("extra_info_pic", model.getPic());
                 startFragment(InfoDetailFragment.class, bundle);
             }
         });
@@ -96,34 +88,9 @@ public class MeFragment extends PagerFragment {
     }
 
     @Override
-    public void loadData() {
-        super.loadData();
+    protected void initUI() {
 
-//        HttpUtil.getInstance().get("http://lakeshire.top/info/infos", new HttpUtil.Callback() {
-//            @Override
-//            public void onFail(String error) {
-//                showNetworkErrorLayout();
-//            }
-//
-//            @Override
-//            public void onSuccess(String response) {
-//                if (response != null && !response.isEmpty()) {
-//                    List<Info> infos = JSON.parseArray(response, Info.class);
-//                    if (infos.isEmpty()) {
-//                        showNoContentLayout();
-//                    } else {
-//                        mInfoList.addAll(infos);
-//                        notifyAdapter();
-//                    }
-//                }
-//            }
-//        }, 0);
     }
-
-//    @Override
-//    protected boolean checkCanRefresh(EnhancePtrFrameLayout frame, View content, View header) {
-//
-//    }
 
     @Override
     public void onResume() {
@@ -133,23 +100,10 @@ public class MeFragment extends PagerFragment {
         if (mUser != null) {
             mInfoList.clear();
             mInfoList.addAll(mUser.getCollections());
-            Logger.d("mInfoList: " + mInfoList.size());
             ImageUtil.getInstance(getActivity()).setImage(mIvAvatar, R.drawable.image2, 256, 256, true);
             mTvName.setText(mUser.getName());
         } else {
             ImageUtil.getInstance(getActivity()).setImage(mIvAvatar, R.drawable.avatar_default, 256, 256, true);
-        }
-    }
-
-    class InfoAdapter extends BaseAdapter<Info> {
-
-        public InfoAdapter(Context mContext, List<Info> mListData, int mLayoutResId) {
-            super(mContext, mListData, mLayoutResId);
-        }
-
-        @Override
-        public void bindViewData(ViewHolder viewHolder, Info item, int position) {
-            viewHolder.setText(R.id.tv_title, item.getTitle());
         }
     }
 
@@ -163,5 +117,20 @@ public class MeFragment extends PagerFragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void onDataLoaded() {
+
+    }
+
+    @Override
+    public void onDataLoadedFail() {
+
+    }
+
+    @Override
+    public void onNoDataLoaded() {
+
     }
 }

@@ -6,10 +6,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 
-/**
- * Created by nali on 2016/6/2.
- */
 public class WebFragment extends DBaseFragment {
 
     private WebView mWebView;
@@ -27,7 +25,7 @@ public class WebFragment extends DBaseFragment {
     }
 
     @Override
-    void initUI() {
+    protected void initUI() {
         showAction(R.drawable.ic_search);
         showBack(true);
         setTitle(mTitle);

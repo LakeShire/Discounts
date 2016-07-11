@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.creamframework.activity.MainActivity" 
     android:id="@+id/container"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:layout_marginTop="-30dp"
+    android:fitsSystemWindows="true">
 
 </RelativeLayout>

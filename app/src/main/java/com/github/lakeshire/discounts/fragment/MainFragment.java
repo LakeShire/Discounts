@@ -4,17 +4,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
+import com.github.lakeshire.discounts.fragment.base.PagerFragment;
+import com.github.lakeshire.discounts.fragment.info.DiscoverFragment;
+import com.github.lakeshire.discounts.fragment.myspace.MySpaceFragment;
+import com.github.lakeshire.discounts.fragment.source.SourceFragment;
 import com.github.lakeshire.discounts.view.viewpagerindicator.IconPagerAdapter;
 import com.github.lakeshire.discounts.view.viewpagerindicator.IconTabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nali on 2016/6/2.
- */
 public class MainFragment extends DBaseFragment {
 
     private ViewPager mViewPager;
@@ -26,7 +29,7 @@ public class MainFragment extends DBaseFragment {
     }
 
     @Override
-    void initUI() {
+    protected void initUI() {
         showAction(R.drawable.ic_search);
         showBack(true);
         setTitle("折扣信息聚合");
@@ -36,24 +39,45 @@ public class MainFragment extends DBaseFragment {
         List<PagerFragment> fragments = initFragments();
         FragmentAdapter adapter = new FragmentAdapter(fragments, getChildFragmentManager());
         mViewPager.setAdapter(adapter);
+        mViewPager.setOffscreenPageLimit(2);
         mIndicator.setViewPager(mViewPager);
+        mIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 2) {
+                    mTitleBar.setVisibility(View.GONE);
+                } else {
+                    mTitleBar.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private List<PagerFragment> initFragments() {
         List<PagerFragment> fragments = new ArrayList<>();
 
-        PagerFragment sourceFragment = new DiscoverFragment();
-        sourceFragment.setTitle("发现");
-        sourceFragment.setIconId(R.drawable.selector_tab_discover);
-        fragments.add(sourceFragment);
+        PagerFragment infoFragment = new DiscoverFragment();
+        infoFragment.setTabTitle("发现");
+        infoFragment.setIconId(R.drawable.selector_tab_discover);
+        fragments.add(infoFragment);
 
         PagerFragment categoryFragment = new SourceFragment();
-        categoryFragment.setTitle("分类");
+        categoryFragment.setTabTitle("分类");
         categoryFragment.setIconId(R.drawable.selector_tab_cate);
         fragments.add(categoryFragment);
 
-        PagerFragment meFragment = new MeFragment();
-        meFragment.setTitle("我的");
+        PagerFragment meFragment = new MySpaceFragment();
+        meFragment.setTabTitle("我的");
         meFragment.setIconId(R.drawable.selector_tab_me);
         fragments.add(meFragment);
 
@@ -85,7 +109,7 @@ public class MainFragment extends DBaseFragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragments.get(position).getTitle();
+            return mFragments.get(position).getTabTitle();
         }
     }
 

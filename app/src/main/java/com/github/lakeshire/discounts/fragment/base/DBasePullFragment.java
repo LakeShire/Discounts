@@ -1,17 +1,13 @@
-package com.github.lakeshire.discounts.fragment;
+package com.github.lakeshire.discounts.fragment.base;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.BaseFragment;
+import com.github.lakeshire.discounts.fragment.base.BasePullFragment;
 
-/**
- * Created by nali on 2016/6/2.
- */
-public abstract class DBaseFragment extends BaseFragment {
-
+public abstract class DBasePullFragment extends BasePullFragment {
     private TextView mTvTitle;
     private ImageView mIvBack;
     private ImageView mIvAction;
@@ -45,7 +41,7 @@ public abstract class DBaseFragment extends BaseFragment {
         initUI();
     }
 
-    abstract void initUI();
+    protected abstract void initUI();
 
     public void doAction() {
 

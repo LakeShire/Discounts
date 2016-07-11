@@ -8,15 +8,13 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.User;
 import com.github.lakeshire.discounts.util.HttpUtil;
 
 import java.io.IOException;
 
-/**
- * Created by nali on 2016/6/2.
- */
 public class RegisterFragment extends DBaseFragment {
 
     private EditText mEtName;
@@ -35,7 +33,7 @@ public class RegisterFragment extends DBaseFragment {
     }
 
     @Override
-    void initUI() {
+    protected void initUI() {
         setTitle("注册");
 
         mEtName = (EditText) find(R.id.et_name);

@@ -5,32 +5,37 @@
     android:layout_height="@dimen/titlebar_height"
     android:background="@color/theme">
 
-    <ImageView
-        android:id="@+id/iv_back"
-        android:layout_width="@dimen/titlebar_back_width"
-        android:layout_height="@dimen/titlebar_back_height"
-        android:layout_marginLeft="@dimen/titlebar_back_margin_left"
-        android:src="@drawable/ic_back"
-        android:layout_centerVertical="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height_real"
+        android:layout_alignParentBottom="true">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/titlebar_back_width"
+            android:layout_height="@dimen/titlebar_back_height"
+            android:layout_marginLeft="@dimen/titlebar_back_margin_left"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"/>
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@id/iv_back"
-        android:layout_toLeftOf="@+id/iv_action"
-        android:layout_marginLeft="@dimen/titlebar_title_margin"
-        android:layout_marginRight="@dimen/titlebar_title_margin"
-        style="@style/titlebar_title"
-        android:singleLine="true"
-        android:maxEms="20"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/iv_back"
+            android:layout_toLeftOf="@+id/iv_action"
+            android:layout_marginLeft="@dimen/titlebar_title_margin"
+            android:layout_marginRight="@dimen/titlebar_title_margin"
+            style="@style/titlebar_title"
+            android:singleLine="true"
+            android:maxEms="20"/>
 
-    <ImageView
-        android:id="@id/iv_action"
-        android:layout_alignParentRight="true"
-        android:visibility="invisible"
-        android:layout_width="@dimen/titlebar_action_width"
-        android:layout_height="@dimen/titlebar_action_height"
-        android:layout_marginRight="@dimen/titlebar_action_margin_right"
-        android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@id/iv_action"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:layout_width="@dimen/titlebar_action_width"
+            android:layout_height="@dimen/titlebar_action_height"
+            android:layout_marginRight="@dimen/titlebar_action_margin_right"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
 </RelativeLayout>

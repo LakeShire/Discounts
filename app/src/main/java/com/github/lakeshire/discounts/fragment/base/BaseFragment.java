@@ -124,14 +124,21 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showNoContentLayout() {
-        if (mNoContentLayout != null) {
-            mNoContentLayout.setVisibility(View.VISIBLE);
-        }
-        if (mNetworkErrorLayout != null) {
-            mNetworkErrorLayout.setVisibility(View.GONE);
-        }
-        if (mLoadingLayout != null) {
-            mLoadingLayout.setVisibility(View.GONE);
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (mNoContentLayout != null) {
+                        mNoContentLayout.setVisibility(View.VISIBLE);
+                    }
+                    if (mNetworkErrorLayout != null) {
+                        mNetworkErrorLayout.setVisibility(View.GONE);
+                    }
+                    if (mLoadingLayout != null) {
+                        mLoadingLayout.setVisibility(View.GONE);
+                    }
+                }
+            });
         }
     }
 

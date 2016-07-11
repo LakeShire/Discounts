@@ -14,6 +14,7 @@ public class Info {
     private String tags;
     private String pic;
     private Source source;
+    private boolean collected;
 
     @JSONField(name="_id")
     private String id;
@@ -88,5 +89,13 @@ public class Info {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
     }
 }

@@ -36,7 +36,7 @@ public class ImageUtil {
 
     private ImageUtil(Context context) {
         picasso = new Picasso.Builder(context).memoryCache(new LruCache(calculateMemoryCacheSize(context))).build();
-        picasso.setLoggingEnabled(true);
+        picasso.setLoggingEnabled(false);
         mContext = context;
     }
 
