@@ -6,7 +6,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
 
 public class WebFragment extends DBaseFragment {
 

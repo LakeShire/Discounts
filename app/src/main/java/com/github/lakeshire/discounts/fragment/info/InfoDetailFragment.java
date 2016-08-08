@@ -8,11 +8,11 @@ import android.widget.Toast;
 
 import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.fragment.WebFragment;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.model.Info;
-import com.github.lakeshire.discounts.util.ImageUtil;
 import com.github.lakeshire.discounts.view.tagview.Tag;
 import com.github.lakeshire.discounts.view.tagview.TagListView;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
+import com.github.lakeshire.lemon.util.ImageUtil;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;

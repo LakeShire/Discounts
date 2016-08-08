@@ -1,11 +1,9 @@
-package com.github.lakeshire.discounts.fragment.base;
+package com.github.lakeshire.lemon.fragment.base;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.BaseFragment;
+import com.github.lakeshire.lemon.R;
 
 public abstract class DBaseFragment extends BaseFragment {
 

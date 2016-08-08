@@ -1,4 +1,4 @@
-package com.github.lakeshire.discounts.adapter.base;
+package com.github.lakeshire.lemon.adapter.base;
 
 import android.content.Context;
 import android.text.TextUtils;

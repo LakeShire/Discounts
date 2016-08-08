@@ -6,6 +6,7 @@ import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhanceHeader;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout;
 import com.github.lakeshire.discounts.view.pulltofresh.PtrHandler;
+import com.github.lakeshire.lemon.fragment.base.BaseFragment;
 
 public abstract class BasePullFragment extends BaseFragment {
 

@@ -1,12 +1,12 @@
-package com.github.lakeshire.discounts.activity.base;
+package com.github.lakeshire.lemon.activity.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import com.github.lakeshire.lemon.R;
 
-import com.github.lakeshire.discounts.R;
 
 public class BaseActivity extends AppCompatActivity {
 

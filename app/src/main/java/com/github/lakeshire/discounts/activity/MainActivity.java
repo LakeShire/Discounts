@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.activity.base.BaseActivity;
 import com.github.lakeshire.discounts.fragment.MainFragment;
-import com.github.lakeshire.discounts.fragment.base.BaseFragment;
+import com.github.lakeshire.lemon.activity.base.BaseActivity;
+import com.github.lakeshire.lemon.fragment.base.BaseFragment;
 
 public class MainActivity extends BaseActivity {
 

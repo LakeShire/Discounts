@@ -1,4 +1,4 @@
-package com.github.lakeshire.discounts.util;
+package com.github.lakeshire.lemon.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;

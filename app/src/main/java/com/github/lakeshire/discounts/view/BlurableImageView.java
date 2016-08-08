@@ -13,11 +13,8 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
-import com.github.lakeshire.discounts.util.Blur;
-
+import com.github.lakeshire.lemon.util.Blur;
 import java.lang.ref.WeakReference;
-
 
 public class BlurableImageView extends ImageView {
 

@@ -2,7 +2,7 @@ package com.github.lakeshire.discounts.biz.user;
 
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.model.User;
-import com.github.lakeshire.discounts.util.HttpUtil;
+import com.github.lakeshire.lemon.util.HttpUtil;
 
 import java.io.IOException;
 

@@ -1,9 +1,9 @@
-package com.github.lakeshire.discounts.adapter.base;
+package com.github.lakeshire.lemon.adapter.base;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.lemon.R;
 
 import java.util.List;
 

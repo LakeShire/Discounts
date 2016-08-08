@@ -18,12 +18,11 @@ import com.github.lakeshire.discounts.fragment.login.LoginFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.User;
-import com.github.lakeshire.discounts.util.BitmapUtil;
-import com.github.lakeshire.discounts.util.ImageUtil;
-import com.github.lakeshire.discounts.util.ScreenUtil;
 import com.github.lakeshire.discounts.view.BlurableImageView;
 import com.github.lakeshire.discounts.view.pulltozoom.PullToZoomListViewEx;
-import com.orhanobut.logger.Logger;
+import com.github.lakeshire.lemon.util.BitmapUtil;
+import com.github.lakeshire.lemon.util.ImageUtil;
+import com.github.lakeshire.lemon.util.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;

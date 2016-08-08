@@ -1,4 +1,4 @@
-package com.github.lakeshire.discounts.fragment.base;
+package com.github.lakeshire.lemon.fragment.base;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.activity.base.BaseActivity;
+import com.github.lakeshire.lemon.R;
+import com.github.lakeshire.lemon.activity.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

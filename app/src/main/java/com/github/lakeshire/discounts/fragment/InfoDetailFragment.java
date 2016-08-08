@@ -7,16 +7,16 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.CollectParam;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.User;
 import com.github.lakeshire.discounts.model.UserResult;
-import com.github.lakeshire.discounts.util.HttpUtil;
-import com.github.lakeshire.discounts.util.ImageUtil;
 import com.github.lakeshire.discounts.view.tagview.Tag;
 import com.github.lakeshire.discounts.view.tagview.TagListView;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
+import com.github.lakeshire.lemon.util.HttpUtil;
+import com.github.lakeshire.lemon.util.ImageUtil;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;

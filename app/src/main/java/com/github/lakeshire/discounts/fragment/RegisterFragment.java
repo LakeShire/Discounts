@@ -8,10 +8,10 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.User;
-import com.github.lakeshire.discounts.util.HttpUtil;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
+import com.github.lakeshire.lemon.util.HttpUtil;
 
 import java.io.IOException;
 

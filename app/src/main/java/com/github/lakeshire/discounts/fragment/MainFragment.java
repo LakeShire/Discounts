@@ -7,13 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.fragment.base.PagerFragment;
 import com.github.lakeshire.discounts.fragment.info.DiscoverFragment;
 import com.github.lakeshire.discounts.fragment.myspace.MySpaceFragment;
 import com.github.lakeshire.discounts.fragment.source.SourceFragment;
 import com.github.lakeshire.discounts.view.viewpagerindicator.IconPagerAdapter;
 import com.github.lakeshire.discounts.view.viewpagerindicator.IconTabPageIndicator;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

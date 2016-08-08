@@ -7,7 +7,7 @@ import com.github.lakeshire.discounts.model.CollectResult;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.InfoResult;
 import com.github.lakeshire.discounts.model.User;
-import com.github.lakeshire.discounts.util.HttpUtil;
+import com.github.lakeshire.lemon.util.HttpUtil;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;

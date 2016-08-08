@@ -3,9 +3,9 @@ package com.github.lakeshire.discounts.adapter;
 import android.content.Context;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.adapter.base.BaseAdapter;
-import com.github.lakeshire.discounts.adapter.base.ViewHolder;
 import com.github.lakeshire.discounts.model.Info;
+import com.github.lakeshire.lemon.adapter.base.BaseAdapter;
+import com.github.lakeshire.lemon.adapter.base.ViewHolder;
 
 import java.util.List;
 

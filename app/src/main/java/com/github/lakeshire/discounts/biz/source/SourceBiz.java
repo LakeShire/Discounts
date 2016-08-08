@@ -3,7 +3,7 @@ package com.github.lakeshire.discounts.biz.source;
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.biz.info.InfoLoadListener;
 import com.github.lakeshire.discounts.model.Source;
-import com.github.lakeshire.discounts.util.HttpUtil;
+import com.github.lakeshire.lemon.util.HttpUtil;
 
 import java.util.List;
 

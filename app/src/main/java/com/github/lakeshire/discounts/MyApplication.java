@@ -4,7 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.github.lakeshire.discounts.manager.UserManager;
-import com.github.lakeshire.discounts.util.SharedPreferencesUtil;
+import com.github.lakeshire.lemon.CrashHandler;
+import com.github.lakeshire.lemon.util.SharedPreferencesUtil;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
 

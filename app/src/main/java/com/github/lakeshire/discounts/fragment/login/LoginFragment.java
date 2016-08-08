@@ -7,9 +7,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.fragment.base.DBaseFragment;
 import com.github.lakeshire.discounts.manager.UserManager;
 import com.github.lakeshire.discounts.model.User;
+import com.github.lakeshire.lemon.fragment.base.DBaseFragment;
 
 public class LoginFragment extends DBaseFragment implements ILoginView {
 

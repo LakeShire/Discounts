@@ -4,10 +4,10 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.github.lakeshire.discounts.R;
-import com.github.lakeshire.discounts.adapter.base.BaseAdapter;
-import com.github.lakeshire.discounts.adapter.base.ViewHolder;
 import com.github.lakeshire.discounts.model.Source;
-import com.github.lakeshire.discounts.util.ImageUtil;
+import com.github.lakeshire.lemon.adapter.base.BaseAdapter;
+import com.github.lakeshire.lemon.adapter.base.ViewHolder;
+import com.github.lakeshire.lemon.util.ImageUtil;
 
 import java.util.List;
 
