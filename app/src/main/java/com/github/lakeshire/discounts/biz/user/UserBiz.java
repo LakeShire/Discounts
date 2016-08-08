@@ -6,9 +6,6 @@ import com.github.lakeshire.discounts.util.HttpUtil;
 
 import java.io.IOException;
 
-/**
- * 用户相关业务
- */
 public class UserBiz implements IUserBiz {
 
     @Override

@@ -3,9 +3,6 @@ package com.github.lakeshire.discounts.manager;
 import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.model.User;
 
-/**
- * Created by nali on 2016/6/3.
- */
 public class UserManager {
 
     private static User sUser;

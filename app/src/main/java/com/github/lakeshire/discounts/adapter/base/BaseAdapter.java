@@ -43,13 +43,11 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter implemen
     }
 
     public boolean containItem(T item) {
-
         if (mListData == null) {
             return false;
         } else {
             return mListData.contains(item);
         }
-
     }
 
     public List<T> getListData() {
@@ -60,12 +58,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter implemen
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = ViewHolder.getView(convertView, mLayoutResId, mContext);
         bindViewData(viewHolder, getItem(position), position);
-        return viewHolder.getContertView();
+        return viewHolder.getConvertView();
     }
 
-    /**
-     * 给view绑定事件
-     */
     public void setClickListener(View view, T t, int position, ViewHolder viewHolder) {
         view.setOnClickListener(this);
         view.setTag(R.id.view_holder_position, new Integer(position));
@@ -81,23 +76,9 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter implemen
         onItemViewClick(view, t, position, holder);
     }
 
-    /**
-     * 当item的子view点击的事件
-     * 如果需要监听点击事件，子类覆盖去重写此方法
-     *
-     * @param view
-     * @param t
-     * @param position
-     * @param holder
-     */
     protected void onItemViewClick(View view, T t, int position, ViewHolder holder) {
 
     }
 
-    /**
-     * @param viewHolder
-     * @param item
-     */
     public abstract void bindViewData(ViewHolder viewHolder, T item, int position);
-
 }

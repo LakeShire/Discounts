@@ -7,9 +7,6 @@ import com.github.lakeshire.discounts.util.HttpUtil;
 
 import java.util.List;
 
-/**
- * Created by nali on 2016/6/29.
- */
 public class SourceBiz implements ISourceBiz {
 
     @Override

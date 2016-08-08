@@ -13,9 +13,6 @@ import com.orhanobut.logger.Logger;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * 信息相关业务
- */
 public class InfoBiz implements IInfoBiz {
 
     @Override

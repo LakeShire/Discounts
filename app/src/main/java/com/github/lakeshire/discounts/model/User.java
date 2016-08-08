@@ -3,9 +3,6 @@ package com.github.lakeshire.discounts.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nali on 2016/6/3.
- */
 public class User {
 
     private String name;

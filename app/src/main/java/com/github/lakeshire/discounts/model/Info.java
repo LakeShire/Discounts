@@ -2,9 +2,6 @@ package com.github.lakeshire.discounts.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-/**
- * Created by nali on 2016/6/2.
- */
 public class Info {
     private String title;
     private String description;

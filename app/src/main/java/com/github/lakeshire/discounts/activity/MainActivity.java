@@ -13,9 +13,6 @@ import com.github.lakeshire.discounts.activity.base.BaseActivity;
 import com.github.lakeshire.discounts.fragment.MainFragment;
 import com.github.lakeshire.discounts.fragment.base.BaseFragment;
 
-/**
- * Created by lakeshire on 2016/4/19.
- */
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -23,11 +20,12 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 设置状态栏透明
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        setStatusBar2Translucent();
 
+        addMainFragment();
+    }
+
+    private void addMainFragment() {
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.container);
         if (fragment == null) {
@@ -36,6 +34,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private void setStatusBar2Translucent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class CrashHandler implements UncaughtExceptionHandler {
 
-	/** 获取CrashHandler实例 ,单例模式 */
 	public static CrashHandler getInstance() {
 
 		if (crashHandler == null) {
@@ -59,20 +58,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
 		return path;
 	}
 
-	/**
-	 * 初始化
-	 * 
-	 * @param context
-	 */
 	public void init(Context context) {
 		mContext = context;
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(this);
 	}
 
-	/**
-	 * 当UncaughtException发生时会转入该重写的方法来处理
-	 */
 	public void uncaughtException(Thread thread, Throwable ex) {
 		if (thread == null || ex == null || mDefaultHandler == null) {
 			System.exit(0);

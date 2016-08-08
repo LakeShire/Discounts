@@ -2,7 +2,6 @@ package com.github.lakeshire.discounts.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -12,20 +11,17 @@ import com.alibaba.fastjson.JSON;
 import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.adapter.base.BaseAdapter;
 import com.github.lakeshire.discounts.adapter.base.ViewHolder;
+import com.github.lakeshire.discounts.fragment.base.PagerFragment;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.InfoResult;
 import com.github.lakeshire.discounts.util.HttpUtil;
 import com.github.lakeshire.discounts.view.LoadMoreListView;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout;
 import com.github.ybq.android.spinkit.style.FadingCircle;
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by nali on 2016/6/2.
- */
 public class DiscoverFragment extends PagerFragment {
 
     LoadMoreListView mLvInfo;
@@ -89,6 +85,11 @@ public class DiscoverFragment extends PagerFragment {
                 startFragment(InfoDetailFragment.class, bundle);
             }
         });
+    }
+
+    @Override
+    protected void initUI() {
+
     }
 
     @Override

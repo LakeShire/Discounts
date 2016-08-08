@@ -1,8 +1,5 @@
 package com.github.lakeshire.discounts.model;
 
-/**
- * Created by nali on 2016/6/3.
- */
 public class Source {
 
     private String name;

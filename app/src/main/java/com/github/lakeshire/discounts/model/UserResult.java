@@ -1,8 +1,5 @@
 package com.github.lakeshire.discounts.model;
 
-/**
- * Created by liuhan on 16/6/12.
- */
 public class UserResult {
 
     private int ret;

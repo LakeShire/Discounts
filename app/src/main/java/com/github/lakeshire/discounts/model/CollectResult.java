@@ -1,8 +1,5 @@
 package com.github.lakeshire.discounts.model;
 
-/**
- * Created by nali on 2016/6/30.
- */
 public class CollectResult {
     private int ret;
     private User user;

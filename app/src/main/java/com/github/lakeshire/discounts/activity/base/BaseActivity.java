@@ -8,26 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.github.lakeshire.discounts.R;
 
-/**
- * Created by lakeshire on 2016/4/19.
- */
 public class BaseActivity extends AppCompatActivity {
-
-//	public void startFragment(Class<?> clazz) {
-//    	try {
-//    		FragmentManager fm = getSupportFragmentManager();
-//			Fragment fragment = (Fragment) clazz.newInstance();
-//			if (fragment != null) {
-//				FragmentTransaction ft = fm.beginTransaction();
-//				ft.replace(R.id.container, fragment);
-//				ft.addToBackStack(clazz.getSimpleName()).commit();
-//			}
-//		} catch (InstantiationException e) {
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			e.printStackTrace();
-//		}
-//    }
 
 	public void startFragment(Class<?> clazz, Bundle bundle) {
 		try {
