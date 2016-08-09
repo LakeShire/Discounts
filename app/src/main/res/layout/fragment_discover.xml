@@ -19,13 +19,13 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.github.lakeshire.discounts.view.LoadMoreListView
+            <com.github.lakeshire.lemon.view.LoadMoreListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@color/gray"
                 android:dividerHeight="1px">
-            </com.github.lakeshire.discounts.view.LoadMoreListView>
+            </com.github.lakeshire.lemon.view.LoadMoreListView>
             <include
                 android:id="@+id/layout_loading"
                 layout="@layout/layout_loading" />

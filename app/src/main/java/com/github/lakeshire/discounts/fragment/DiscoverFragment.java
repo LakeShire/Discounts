@@ -12,11 +12,11 @@ import com.github.lakeshire.discounts.R;
 import com.github.lakeshire.discounts.fragment.base.PagerFragment;
 import com.github.lakeshire.discounts.model.Info;
 import com.github.lakeshire.discounts.model.InfoResult;
-import com.github.lakeshire.discounts.view.LoadMoreListView;
 import com.github.lakeshire.discounts.view.pulltofresh.EnhancePtrFrameLayout;
 import com.github.lakeshire.lemon.adapter.base.BaseAdapter;
 import com.github.lakeshire.lemon.adapter.base.ViewHolder;
 import com.github.lakeshire.lemon.util.HttpUtil;
+import com.github.lakeshire.lemon.view.LoadMoreListView;
 import com.github.ybq.android.spinkit.style.FadingCircle;
 
 import java.util.ArrayList;
