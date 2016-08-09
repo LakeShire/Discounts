@@ -1,4 +1,4 @@
-package com.github.lakeshire.discounts.view;
+package com.github.lakeshire.lemon.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.github.lakeshire.discounts.R;
+import com.github.lakeshire.lemon.R;
 
 public class LoadMoreListView extends ListView {
 
@@ -51,7 +51,7 @@ public class LoadMoreListView extends ListView {
     }
 
     public void initView() {
-        footerView = View.inflate(context, R.layout.view_footer, null);
+        footerView = View.inflate(context, R.layout.layout_footer, null);
         footerView.setVisibility(INVISIBLE);
         hintTextView = (TextView) footerView.findViewById(R.id.tv_hint);
         loadingImageView = (ImageView) footerView.findViewById(R.id.iv_anim);
